@@ -35,7 +35,7 @@ class LEDs:
         
     def init_leds(self):
         strip = neopixel.NeoPixel(
-            self.pixel_pin, self.num_pixels, self.brightness, self.auto_write, self.pixel_order
+            board.D18, self.num_pixels, self.brightness, self.auto_write, neopixel.RGB
             )
         return strip
     
