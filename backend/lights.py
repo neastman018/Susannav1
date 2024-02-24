@@ -24,7 +24,7 @@ class LEDs:
                       # NeoPixels must be connected to D10, D12, D18 or D21 to work.
 
     """
-    def __init__(self, num_pixels, brightness, auto_write, pixel_pin, pixel_order):
+    def __init__(self, num_pixels, brightness, auto_write = True, pixel_pin=board.D18, pixel_order = neopixel.RGB):
         self.num_pixels = num_pixels
         self.brightness = brightness
         self.auto_write = auto_write
@@ -35,7 +35,7 @@ class LEDs:
         
     def init_leds(self):
         strip = neopixel.NeoPixel(
-            board.D18, 150, brightness=0.5, auto_write=True, pixel_order = neopixel.RGB
+            self.pixel_pin, self.num_pixels, self.brightness, self.auto_write, self.pixel_order
             )
         return strip
     

@@ -23,8 +23,6 @@ state = "OFF"
 while True:
 
     if state == "OFF":
-        leds.off(strip)
-
         if button1.button_press():
             state = "OFF"
             print("OFF")
@@ -40,8 +38,6 @@ while True:
 
     
     elif state == "RED":
-        leds.display_color(strip, colors.RED)
-
         if button1.button_press():
             state = "OFF"
             print("OFF")
@@ -58,8 +54,6 @@ while True:
 
 
     elif state == "GREEN":
-        leds.display_color(strip, colors.GREEN)
-
         if button1.button_press():
             state = "OFF"
             print("OFF")
@@ -77,7 +71,6 @@ while True:
 
     else:
         print("INVALID STATE")
-
         if button1.button_press():
             state = "OFF"
             print("OFF")
