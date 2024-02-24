@@ -4,16 +4,16 @@ import colors
 from lights import LEDs
 from button.button import Button
 import RPi.GPIO as GPIO
+import board
 
 
-button1 = Button(pin=8)
-button2 = Button(pin=10)
-button3= Button(pin=11)
+button1 = Button(pin=board.D14)
+button2 = Button(pin=board.D15)
+button3= Button(pin=board.D17)
 leds = LEDs(150, 0.5)
 strip = leds.init_leds()
 
 GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BOARD)
 button1.init_button()
 button2.init_button()
 button3.init_button()
@@ -71,7 +71,7 @@ while True:
 
     else:
         print("INVALID STATE")
-        
+
         if button1.button_press():
             state == "OFF"
             leds.off(strip)
