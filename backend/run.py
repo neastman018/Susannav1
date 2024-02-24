@@ -26,16 +26,16 @@ while True:
         state = "OFF"
         print("OFF")
         leds.off(strip)
-        run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --off", shell=True)
+        #run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --off", shell=True)
     elif button2.button_press():
         state = "RED"
         print("RED")
-        run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
+        #run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
         leds.display_color(strip, 255, 0, 0)
     elif button3.button_press():
         state = "GREEN"
         print("GREEN")
-        run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
+        #run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
         leds.display_color(strip, 0, 255, 0)
     # if state == "OFF":
     #     if button1.button_press():

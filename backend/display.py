@@ -21,15 +21,12 @@ state = "OFF"
 while True:
     if button1.button_press():
         state = "OFF"
-        print("OFF")
         run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --off", shell=True)
     elif button2.button_press():
         state = "RED"
-        print("RED")
         run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
     elif button3.button_press():
         state = "GREEN"
-        print("GREEN")
         run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
     # if state == "OFF":
     #     if button1.button_press():
