@@ -84,7 +84,7 @@ class LEDs:
     Method to display a color with Preset Color
     """
     def display_color(self, strip, r, g, b):
-        strip.fill((r, g, b))
+        strip.fill((g, r, b))
 
         if not self.auto_write:
             strip.show()
