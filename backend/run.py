@@ -4,12 +4,11 @@ import colors
 from lights import LEDs
 from button.button import Button
 import RPi.GPIO as GPIO
-import board
 
 
-button1 = Button(pin=board.D14)
-button2 = Button(pin=board.D15)
-button3= Button(pin=board.D17)
+button1 = Button(pin=14)
+button2 = Button(pin=15)
+button3= Button(pin=17)
 leds = LEDs(150, 0.5)
 strip = leds.init_leds()
 
