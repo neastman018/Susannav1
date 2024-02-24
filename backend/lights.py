@@ -4,6 +4,14 @@ import board
 import neopixel
 
 
+RED = (255, 0, 0)
+BLUE = (0, 255, 0)
+GREEN = (0, 0, 255)
+WHITE = (255, 255, 255)
+OREGANO = (93, 111, 64)
+
+
+
 
 class LEDs:
     """
@@ -28,11 +36,14 @@ class LEDs:
     def init_leds(self):
         strip = neopixel.NeoPixel(
             board.D18, 150, brightness=0.2, auto_write=True, pixel_order = neopixel.GRB
-)
+            )
         return strip
+    
+    def color(r, b, g):
+        return (r, b, g)
 
-# The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
-# For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
+    # The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
+    # For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
 
 
     def wheel(self, strip, pos):
@@ -70,10 +81,33 @@ class LEDs:
 
 
     """
-    Method to display a color
+    Method to display a color with Preset Color
+    """
+    def display_color(self, strip, color):
+        strip.fill(OREGANO)
+
+        if not self.auto_write:
+            strip.show()
+
+    """
+    Method to display a color with RBG Values
     """
     def display_color(self, strip, r, b, g):
         strip.fill((r, b, g))
+
+        if not self.auto_write:
+            strip.show()
+
+    """
+    Method to clear leds
+    """
+    def off(self, strip):
+        strip.fill((0, 0, 0))
+        
+        if not self.auto_write:
+            strip.show()
+
+
 
 
 
