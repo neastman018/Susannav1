@@ -25,30 +25,35 @@ while True:
 
     if state == "OFF":
         leds.off(strip)
-        print("OFF")
 
         if button1.button_press():
             state == "OFF"
+            print("OFF")
             leds.off(strip)
         elif button2.button_press():
             state == "RED"
+            print("RED")
             leds.display_color(strip, colors.RED)
         elif button3.button_press():
             state = "GREEN"
+            print("GREEN")
             leds.display_color(strip, colors.GREEN)
     
-    if state == "RED":
+    elif state == "RED":
         leds.display_color(strip, colors.RED)
-        print("RED")
+
 
         if button1.button_press():
             state == "OFF"
+            print("OFF")
             leds.off(strip)
         elif button2.button_press():
             state == "RED"
+            print("RED")
             leds.display_color(strip, colors.RED)
         elif button3.button_press():
             state = "GREEN"
+            print("GREEN")
             leds.display_color(strip, colors.GREEN)       
 
 
@@ -59,12 +64,15 @@ while True:
 
         if button1.button_press():
             state == "OFF"
+            print("OFF")
             leds.off(strip)
         elif button2.button_press():
             state == "RED"
+            print("RED")
             leds.display_color(strip, colors.RED)
         elif button3.button_press():
             state = "GREEN"
+            print("GREEN")
             leds.display_color(strip, colors.GREEN)       
 
 
@@ -73,10 +81,13 @@ while True:
 
         if button1.button_press():
             state == "OFF"
+            print("OFF")
             leds.off(strip)
         elif button2.button_press():
             state == "RED"
+            print("RED")
             leds.display_color(strip, colors.RED)
         elif button3.button_press():
             state = "GREEN"
+            print("GREEN")
             leds.display_color(strip, colors.GREEN)
