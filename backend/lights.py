@@ -83,17 +83,11 @@ class LEDs:
     """
     Method to display a color with Preset Color
     """
-    def display_color(self, strip, color):
-        strip.fill(OREGANO)
-
-        if not self.auto_write:
-            strip.show()
-
-    """
-    Method to display a color with RBG Values
-    """
-    def display_color(self, strip, r, b, g):
-        strip.fill((r, b, g))
+    def display_color(self, strip, color=None, r=0, b=0, g=0):
+        if not color == None:
+            strip.fill(color)
+        else:
+            strip.fill((r, b, g))
 
         if not self.auto_write:
             strip.show()

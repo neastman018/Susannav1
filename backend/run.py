@@ -10,6 +10,6 @@ strip = leds.init_leds()
 
 leds.display_color(strip, colors.OREGANO)
 time.sleep(10)
-leds.display_color(strip, 200, 200, 0)
+leds.display_color(strip, r=200, b=200, g=0)
 time.sleep(10)
 leds.off(strip)
