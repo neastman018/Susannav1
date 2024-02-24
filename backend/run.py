@@ -17,6 +17,7 @@ button1.init_button()
 button2.init_button()
 button3.init_button()
 
+run("python display.py", shell=True)
 
 # state = {OFF, LED_RED, LED_GREEN}
 state = "OFF"
