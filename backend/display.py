@@ -8,7 +8,7 @@ from subprocess import run
 button1 = Button(pin=14)
 button2 = Button(pin=15)
 button3= Button(pin=17)
-
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 button1.init_button()
 button2.init_button()
