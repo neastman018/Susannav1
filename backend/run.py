@@ -2,8 +2,10 @@
 import time
 from lights import LEDs
 
-strip = LEDs(150, 0.5)
+leds = LEDs(150, 0.5)
+strip = leds.init_leds()
 
-strip.display_color(255, 255, 255)
+
+leds.display_color(strip, 255, 255, 255)
 time.sleep(10)
-strip.display_color(0, 0, 0)
+leds.display_color(strip, 0, 0, 0)

@@ -23,17 +23,19 @@ class LEDs:
         self.pixel_pin = pixel_pin
         self.pixel_order = pixel_order
 
+
         
     def init_leds(self):
-        self = neopixel.NeoPixel(
+        strip = neopixel.NeoPixel(
             self.pixel_pin, self.num_pixels, self.brightness, self.auto_write, self.pixel_order
             )
+        return strip
 
 # The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
 # For RGBW NeoPixels, simply change the ORDER to RGBW or GRBW.
 
 
-    def wheel(self, pos):
+    def wheel(self, strip, pos):
         # Input a value 0 to 255 to get a color value.
         # The colours are a transition r - g - b - back to r.
         if pos < 0 or pos > 255:
@@ -57,21 +59,21 @@ class LEDs:
     """
     @param wait is the time between cycles in seconds
     """
-    def rainbow_cycle(self, wait):
+    def rainbow_cycle(self, strip, wait):
         for j in range(255):
             for i in range(self.num_pixels):
                 pixel_index = (i * 256 // self.num_pixels) + j
-                self.strip[i] = self.wheel(pixel_index & 255)
+                strip[i] = self.wheel(pixel_index & 255)
             if not self.auto_write:
-                self.strip.show()
+                strip.show()
             time.sleep(wait)
 
 
     """
     Method to display a color
     """
-    def display_color(self, r, b, g):
-        self.fill((r, b, g))
+    def display_color(self, strip, r, b, g):
+        strip.fill((r, b, g))
 
 
 
