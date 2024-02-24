@@ -1,6 +1,5 @@
 # Runs the backend for Susanna
 import time
-import colors
 from lights import LEDs
 from button.button import Button
 import RPi.GPIO as GPIO
@@ -27,67 +26,67 @@ while True:
         leds.off(strip)
 
         if button1.button_press():
-            state == "OFF"
+            state = "OFF"
             print("OFF")
             leds.off(strip)
         elif button2.button_press():
-            state == "RED"
+            state = "RED"
             print("RED")
-            leds.display_color(strip, colors.RED)
+            leds.display_color(strip, 255, 0, 0)
         elif button3.button_press():
             state = "GREEN"
             print("GREEN")
-            leds.display_color(strip, colors.GREEN)
+            leds.display_color(strip, 0, 255, 0)
+
     
     elif state == "RED":
         leds.display_color(strip, colors.RED)
 
-
         if button1.button_press():
-            state == "OFF"
+            state = "OFF"
             print("OFF")
             leds.off(strip)
         elif button2.button_press():
-            state == "RED"
+            state = "RED"
             print("RED")
-            leds.display_color(strip, colors.RED)
+            leds.display_color(strip, 255, 0, 0)
         elif button3.button_press():
             state = "GREEN"
             print("GREEN")
-            leds.display_color(strip, colors.GREEN)       
+            leds.display_color(strip, 0, 255, 0)
 
 
 
     elif state == "GREEN":
         leds.display_color(strip, colors.GREEN)
-        print("GREEN")
 
         if button1.button_press():
-            state == "OFF"
+            state = "OFF"
             print("OFF")
             leds.off(strip)
         elif button2.button_press():
-            state == "RED"
+            state = "RED"
             print("RED")
-            leds.display_color(strip, colors.RED)
+            leds.display_color(strip, 255, 0, 0)
         elif button3.button_press():
             state = "GREEN"
             print("GREEN")
-            leds.display_color(strip, colors.GREEN)       
+            leds.display_color(strip, 0, 255, 0)
+     
 
 
     else:
         print("INVALID STATE")
 
         if button1.button_press():
-            state == "OFF"
+            state = "OFF"
             print("OFF")
             leds.off(strip)
         elif button2.button_press():
-            state == "RED"
+            state = "RED"
             print("RED")
-            leds.display_color(strip, colors.RED)
+            leds.display_color(strip, 255, 0, 0)
         elif button3.button_press():
             state = "GREEN"
             print("GREEN")
-            leds.display_color(strip, colors.GREEN)
+            leds.display_color(strip, 0, 255, 0)

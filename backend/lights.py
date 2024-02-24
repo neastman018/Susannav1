@@ -24,7 +24,7 @@ class LEDs:
                       # NeoPixels must be connected to D10, D12, D18 or D21 to work.
 
     """
-    def __init__(self, num_pixels, brightness = 0.5, auto_write = True, pixel_pin = board.D18, pixel_order = neopixel.RGB):
+    def __init__(self, num_pixels, brightness, auto_write, pixel_pin, pixel_order):
         self.num_pixels = num_pixels
         self.brightness = brightness
         self.auto_write = auto_write
@@ -35,7 +35,7 @@ class LEDs:
         
     def init_leds(self):
         strip = neopixel.NeoPixel(
-            board.D18, 150, brightness=0.2, auto_write=True, pixel_order = neopixel.RGB
+            board.D18, 150, brightness=0.5, auto_write=True, pixel_order = neopixel.RGB
             )
         return strip
     
@@ -83,11 +83,8 @@ class LEDs:
     """
     Method to display a color with Preset Color
     """
-    def display_color(self, strip, color=None, r=0, b=0, g=0):
-        if not color == None:
-            strip.fill(color)
-        else:
-            strip.fill((r, b, g))
+    def display_color(self, strip, r, b, g):
+        strip.fill((r, b, g))
 
         if not self.auto_write:
             strip.show()
