@@ -27,8 +27,8 @@ class LEDs:
         
     def init_leds(self):
         strip = neopixel.NeoPixel(
-            self.pixel_pin, self.num_pixels, self.brightness, self.auto_write, self.pixel_order
-            )
+            self.pixel_pin, self.num_pixels, brightness=0.2, auto_write=False, pixel_order = neopixel.GRB
+)
         return strip
 
 # The order of the pixel colors - RGB or GRB. Some NeoPixels have red and green reversed!
