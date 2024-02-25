@@ -56,7 +56,7 @@ class Alarm:
         if self.second == 0:
             self.second = 1
 
-        if self.hour == now.hour and self.minute == now.minute and self.second == now.second and self.day == now.day and self.month == now.month and not self.is_active():
+        if self.hour == now.hour and self.minute == now.minute and not self.is_active():
             print(self.is_active())
             self.playing = True
             self.alarm.play()

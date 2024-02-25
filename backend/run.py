@@ -11,7 +11,7 @@ from alarm.alarm import Alarm
 button1 = Button(pin=14)
 button2 = Button(pin=15)
 button3= Button(pin=17)
-alarm = Alarm(hour=8, minute=55, second=0, day = datetime.day(), month = datetime.month() )
+alarm = Alarm(hour=8, minute=57, second=0)
 leds = LEDs(150, 0.5)
 strip = leds.init_leds()
 
