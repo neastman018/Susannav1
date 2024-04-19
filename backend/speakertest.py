@@ -18,7 +18,7 @@ button1.init_button()
 if __name__ == '__main__':
     pygame.mixer.init()
     alarm = pygame.mixer.music
-    alarm.load('backend/alarm/music/Good_MorningV2.mp3')      
+    alarm.load('alarm/music/Good_MorningV2.mp3')      
 
     GPIO.setwarnings(False)                                        
     GPIO.setmode(GPIO.BOARD)                                        
@@ -35,6 +35,7 @@ if __name__ == '__main__':
             alarm.stop()
             state = False
             print("Button is Pressed, Music should stop playing\n")
+
 
             
     
