@@ -20,13 +20,18 @@ if __name__ == '__main__':
     GPIO.setwarnings(False)                                        
     GPIO.setmode(GPIO.BOARD)                                        
     GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    
+    print("All Good in the Hood\n")
 
     while True:
         if GPIO.input(buttonPin) == GPIO.HIGH and not state:
             alarm.play()
             state = True
+            print("Button is Pressed, Music should be playing\n")
 
         elif GPIO.input(buttonPin) == GPIO.HIGH and state:
             alarm.stop()
             state = False
+            print("Button is Pressed, Music should stop playing\n")
+
+            
     
