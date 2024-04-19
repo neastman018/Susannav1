@@ -18,25 +18,13 @@ Method to initalize the alarm
 
 """
 Method to play the alarm
-@parameter alarm: return of the init_alarm function which is a initalized alarm with a song loaded
-@parameter alarm_time_hour: hour the alarm should go off (24 hour time)
-@parameter alarm_time_minute: minute the alarm should go off
-@parameter alarm_time_second: minute the alarm should go off (will be 00 by default)
-@parameter stop: boolean value to stop the alarm
+@param alarm: return of the init_alarm function which is a initalized alarm with a song loaded
 """
 
 class Alarm:
 
-    def __init__(self, alarm = pygame.mixer.music, stop = False, active = False, hour = 0, minute = 0, second = 1, day = 0, month = 0, playing = False):
+    def __init__(self, alarm = pygame.mixer.music):
         self.alarm = alarm
-        self.stop = stop
-        self.active = active
-        self.hour = hour
-        self.minute = minute
-        self.second = second
-        self.day = day
-        self.month = month
-        self.playing = playing
 
         
 
@@ -46,31 +34,32 @@ class Alarm:
 
         print(f"Alarm playing {alarm_sound} is ready")
     
+    """
+    Getter Method for the alarm being active
+    @return true if alarm is playing and false if not
+    """
     def is_active(self) -> bool:
         return self.alarm.get_busy()
-        
-
-    def play_alarm(self) -> bool:
-        now = datetime.now()
-        #now.second does not register 0
-        if self.second == 0:
-            self.second = 1
-
-        if self.hour == now.hour and self.minute == now.minute and not self.is_active():
-            print(self.is_active())
-            self.playing = True
-            self.alarm.play()
-
-        if self.stop and self.is_active():
-            print("alarm is stopping")
-            self.playing = False
-            self.alarm.pause()
-
-        return self.playing
     
-    def alarm_stop(self, stop):
-        self.stop = stop
-        return stop
+
+    def play_alarm(self):
+        self.alarm.play()
+        
+    """
+    Plays the alarm at a certain time
+    @param hour, minute is the time to play
+    """
+    def play_alarm_on_time(self, hour, minute) -> bool:
+        now = datetime.now()
+
+        if hour == now.hour and minute == now.minute and not self.is_active():
+            print(self.is_active())
+            self.alarm.play()
+    
+    # Method to stop the alarm if active
+    def alarm_stop(self)->bool:
+        if self.is_active():
+            self.alarm.stop()
 
     if __name__ == "__main__":
         now = datetime.now()

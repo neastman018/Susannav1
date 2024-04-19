@@ -3,6 +3,18 @@ import time
 from button.button import Button
 import RPi.GPIO as GPIO
 from subprocess import run
+import pygame
+from alarm.alarm import Alarm
+
+
+def turn_on_display():
+    run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
+    return True
+
+def turn_off_display():
+    run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --off", shell=True)
+    return False
+
 
 
 button1 = Button(pin=14)
@@ -14,78 +26,41 @@ button1.init_button()
 button2.init_button()
 button3.init_button()
 
+alarm = Alarm()
+alarm.init_alarm("Good_MorningV2.mp3")
 
-# state = {OFF, LED_RED, LED_GREEN}
-state = "OFF"
+# state = {OFF, ALARM_ACTIVE, ON}
+state = "ON"
+display = False
 
 while True:
-    if button1.button_press():
-        state = "OFF"
-        run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --off", shell=True)
-    elif button2.button_press():
-        state = "RED"
-        run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
-    elif button3.button_press():
-        state = "GREEN"
-        run("WAYLAND_DISPLAY='wayland-1' wlr-randr --output HDMI-A-1 --on", shell=True)
-    # if state == "OFF":
-    #     if button1.button_press():
-    #         state = "OFF"
-    #         print("OFF")
-    #         leds.off(strip)
-    #     elif button2.button_press():
-    #         state = "RED"
-    #         print("RED")
-    #         leds.display_color(strip, 255, 0, 0)
-    #     elif button3.button_press():
-    #         state = "GREEN"
-    #         print("GREEN")
-    #         leds.display_color(strip, 0, 255, 0)
 
-    
-    # elif state == "RED":
-    #     if button1.button_press():
-    #         state = "OFF"
-    #         print("OFF")
-    #         leds.off(strip)
-    #     elif button2.button_press():
-    #         state = "RED"
-    #         print("RED")
-    #         leds.display_color(strip, 255, 0, 0)
-    #     elif button3.button_press():
-    #         state = "GREEN"
-    #         print("GREEN")
-    #         leds.display_color(strip, 0, 255, 0)
+    if state == "OFF":
+        alarm.play_alarm_on_time(12, 0)
+        if alarm.is_active():
+            state = "ALARM_ACTIVE"
+            display = turn_on_display()
+        if button1.button_press():
+            state = "ON"
+            display = turn_on_display()
+
+    elif state == "ON":
+        if button2.button_press():
+            state == "OFF"
+            display = turn_off_display()
+
+    elif state == "ALARM_ACTIVE":
+        if button3.button_press():
+            alarm.alarm_stop()
+            state == "ON"
+
+    else:
+        print("Invalid State -- Defaulting to On")
+        if alarm.is_active():
+            alarm.alarm_stop()
+        if display == False:
+            display = turn_on_display()
 
 
 
-    # elif state == "GREEN":
-    #     if button1.button_press():
-    #         state = "OFF"
-    #         print("OFF")
-    #         leds.off(strip)
-    #     elif button2.button_press():
-    #         state = "RED"
-    #         print("RED")
-    #         leds.display_color(strip, 255, 0, 0)
-    #     elif button3.button_press():
-    #         state = "GREEN"
-    #         print("GREEN")
-    #         leds.display_color(strip, 0, 255, 0)
-     
 
-
-    # else:
-    #     print("INVALID STATE")
-    #     if button1.button_press():
-    #         state = "OFF"
-    #         print("OFF")
-    #         leds.off(strip)
-    #     elif button2.button_press():
-    #         state = "RED"
-    #         print("RED")
-    #         leds.display_color(strip, 255, 0, 0)
-    #     elif button3.button_press():
-    #         state = "GREEN"
-    #         print("GREEN")
-    #         leds.display_color(strip, 0, 255, 0)
