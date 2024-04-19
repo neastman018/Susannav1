@@ -4,13 +4,16 @@ import time
 import pygame
 import multiprocessing
 from datetime import datetime 
-  
+from button.button import Button
 
 state = False
 buttonPin = 10
 GPIO.setwarnings(False)                                        
 GPIO.setmode(GPIO.BOARD)                                        
 GPIO.setup(buttonPin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    
+
+button1 = Button(buttonPin)
+button1.init_button()
 
 if __name__ == '__main__':
     pygame.mixer.init()
@@ -23,12 +26,12 @@ if __name__ == '__main__':
     print("All Good in the Hood\n")
 
     while True:
-        if GPIO.input(buttonPin) == GPIO.HIGH and not state:
+        if button1.press() and not state:
             alarm.play()
             state = True
             print("Button is Pressed, Music should be playing\n")
 
-        elif GPIO.input(buttonPin) == GPIO.HIGH and state:
+        elif button1.press() and state:
             alarm.stop()
             state = False
             print("Button is Pressed, Music should stop playing\n")

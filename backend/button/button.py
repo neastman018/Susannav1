@@ -30,7 +30,7 @@ class Button:
     Button will act like a switch
 
     """ 
-    def button_switch(self) -> bool:
+    def switch(self) -> bool:
         if GPIO.input(self.pin) == GPIO.HIGH and (time.time() - self.last_press) >= self.debounce and not self.pressed:
             self.pressed = True
             self.last_press = time.time()
@@ -43,7 +43,7 @@ class Button:
 
         return self.state
     
-    def button_press(self) -> bool:
+    def press(self) -> bool:
         if GPIO.input(self.pin) == GPIO.HIGH and (time.time() - self.last_press) >= self.debounce and not self.pressed:
             self.pressed = True
             self.last_press = time.time()
